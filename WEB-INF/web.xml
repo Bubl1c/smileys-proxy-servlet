@@ -4,12 +4,13 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
+
     <servlet>
-        <servlet-name>mercury</servlet-name>
+        <servlet-name>ihub-rest</servlet-name>
         <servlet-class>org.mitre.dsmiley.httpproxy.ProxyServlet</servlet-class>
         <init-param>
             <param-name>targetUri</param-name>
-            <param-value>http://192.168.1.139:/solr</param-value>
+            <param-value>http://localhost:8000</param-value>
         </init-param>
         <init-param>
             <param-name>log</param-name>
@@ -17,8 +18,38 @@
         </init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>mercury</servlet-name>
-        <url-pattern>/mercury/*</url-pattern>
+        <servlet-name>ihub-rest</servlet-name>
+        <url-pattern>/ihub/rest/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ihub-iportal</servlet-name>
+        <servlet-class>org.mitre.dsmiley.httpproxy.ProxyServlet</servlet-class>
+        <init-param>
+            <param-name>targetUri</param-name>
+            <param-value>http://localhost:8700/iportal</param-value>
+        </init-param>
+        <init-param>
+            <param-name>log</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ihub-iportal</servlet-name>
+        <url-pattern>/iportal/*</url-pattern>
+    </servlet-mapping>
+
+    <!--<filter>
+        <filter-name>SettingsFilter</filter-name>
+        <filter-class>filters.SettingsFilter</filter-class>
+        <init-param>
+            <param-name>test-param</param-name>
+            <param-value>Initialization Paramter</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SettingsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
 
 </web-app>
